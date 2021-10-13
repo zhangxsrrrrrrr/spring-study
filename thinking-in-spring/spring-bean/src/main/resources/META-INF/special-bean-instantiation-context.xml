@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+  <bean id="serviceLoaderFactoryBean" class="org.springframework.beans.factory.serviceloader.ServiceLoaderFactoryBean">
+<!--    org.springframework.beans.factory.serviceloader.AbstractServiceLoaderBasedFactoryBean中的serviceType-->
+    <property name="serviceType" value="edu.ahau.thinking.in.spring.bean.factory.UserFactory"/>
+  </bean>
+</beans>

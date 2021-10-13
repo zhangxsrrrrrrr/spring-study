@@ -12,6 +12,12 @@ import java.security.spec.DSAPrivateKeySpec;
 public class User {
     private String name;
     private int age;
+    public static User createUser(){
+        User user = new User();
+        user.setAge(12);
+        user.setName("zasn");
+        return user;
+    }
 
     public String getName() {
         return name;
