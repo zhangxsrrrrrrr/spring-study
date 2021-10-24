@@ -7,7 +7,6 @@ import org.springframework.beans.factory.ListableBeanFactory;
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import java.net.ConnectException;
 import java.util.Map;
 
 /**
@@ -31,15 +30,16 @@ public class DependencyLooKupDemo {
         // 配置XML配置文件
         // 启动Spring的应用上下文
         BeanFactory context = new ClassPathXmlApplicationContext("classpath:/META-INF/dependency-looKup-context.xml");
-
-        lookupInrealTime(context);
-
-        lookupInLazyTime(context);
-
-        lookupByType(context);
-        lookupCollectByType(context);
-
-        lookupByAnnotationType(context);
+        User bean = context.getBean("user",User.class);
+        System.out.println(bean);
+//        lookupInrealTime(context);
+//
+//        lookupInLazyTime(context);
+//
+//        lookupByType(context);
+//        lookupCollectByType(context);
+//
+//        lookupByAnnotationType(context);
     }
 
     private static void lookupByAnnotationType(BeanFactory context) {
