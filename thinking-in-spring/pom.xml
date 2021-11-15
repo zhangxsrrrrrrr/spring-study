@@ -19,6 +19,8 @@
     <module>dependency-injection</module>
     <module>dependency-source</module>
     <module>Bean-scope</module>
+    <module>bean-lifecycle</module>
+    <module>xiaoce</module>
   </modules>
 
   <dependencyManagement>

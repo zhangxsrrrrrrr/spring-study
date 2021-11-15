@@ -2,17 +2,20 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+  <!-- RootBeanDefinition ,不需要进行合并 -->
+  <bean id="user" class="edu.ahau.thinking.in.spring.ioc.overview.domain.User">
+    <property name="age" value="12"/>
+    <property name="workCities" value="BEIJING,HANGZHOU"/>
+    <property name="cityList" value="BEIJING,SHANGHAI"/>
+  </bean>
 
-<bean id="user" class="edu.ahau.thinking.in.spring.ioc.overview.domain.User" >
-  <property name="age" value="12" />
-  <property name="workCities" value="BEIJING,HANGZHOU"/>
-  <property name="cityList" value="BEIJING,SHANGHAI" />
-</bean>
+  <!-- 普通BeanDefinition定义，GenericBeanDefinition -->
+  <bean id="superUser" class="edu.ahau.thinking.in.spring.ioc.overview.domain.SuperUser" primary="true" parent="user">
+    <property name="address" value="anhui"/>
+  </bean>
+
+
   <bean id="objectFactory" class="org.springframework.beans.factory.config.ObjectFactoryCreatingFactoryBean">
     <property name="targetBeanName" value="user"/>
   </bean>
-
-<bean id="superUser" class="edu.ahau.thinking.in.spring.ioc.overview.domain.SuperUser" primary="true">
-  <property name="address" value="anhui" />
-</bean>
 </beans>

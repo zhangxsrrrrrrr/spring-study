@@ -1,11 +1,11 @@
 package edu.ahau.thinking.in.spring.ioc.overview.domain;
 
 import lombok.Data;
-import lombok.ToString;
 import org.springframework.beans.factory.BeanNameAware;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -14,15 +14,45 @@ import java.util.List;
  * @description 用户类
  */
 @Data
-@ToString
 public class User implements BeanNameAware {
     private String name;
     private int age;
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                ", beanName='" + beanName + '\'' +
+                ", workCities=" + Arrays.toString(workCities) +
+                ", cityList=" + cityList +
+                '}';
+    }
+
     private transient String beanName;
 
     private City[] workCities;
     private List<City> cityList;
 
+    public String getBeanName() {
+        return beanName;
+    }
+
+    public City[] getWorkCities() {
+        return workCities;
+    }
+
+    public void setWorkCities(City[] workCities) {
+        this.workCities = workCities;
+    }
+
+    public List<City> getCityList() {
+        return cityList;
+    }
+
+    public void setCityList(List<City> cityList) {
+        this.cityList = cityList;
+    }
 
     public static User createUser() {
         User user = new User();
