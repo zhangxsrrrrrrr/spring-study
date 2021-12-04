@@ -1,0 +1,78 @@
+select t.task_start,
+    t.task_end,
+    t.task_name,
+    t.user_name,
+    t.cust_id,
+    t.phone_no,
+    t.show_phone_no,
+    t.region_name,
+    t.grey_flag,
+    t.status_name,
+    t.mngr,
+    t.chn_name,
+    t.all_chn_name,
+    t.chn_type_name,
+    t.oper_date,
+    t.method_name,
+    t.contact_flag,
+    t.exec_code,
+    t.accept_name,
+    t.service_name,
+    t.org_name,
+    t.note,
+    t.exec_name,
+    t.policy_name,
+    t.cust_advice,
+    t.succ_experience,
+    t.grid_desc
+    from (select to_char(b.create_date, 'yyyymmdd') as task_start,
+    to_char(b.end_date, 'yyyymmdd') as task_end,
+    b.task_name,
+    b.user_name,
+    b.cust_id,
+    b.phone_no,
+    b.show_phone_no,
+    e1.region_name as region_name,
+    decode(b.grey_flag, 'Y', '无效', 'N', '有效') as grey_flag,
+  e2.status_name as status_name,
+    b.mngr_service_no || '->' || b.mngr_service_name as mngr,
+    func_mk_chnchange(b.chn_type) as chn_name,
+    case
+    when b.mngr_service_no
+    <>
+    '-1' and
+    position('900' in cast(b.chn_type as varchar)) > 0 then
+    '客户经理,' || func_mk_chnchange(b.all_chn_type)
+    else
+    func_mk_chnchange(b.all_chn_type)
+    end as all_chn_name,
+   j.chn_type_name as chn_type_name,
+    to_char(c.oper_date, 'yyyy/mm/dd hh24:mi:ss') as oper_date,
+    e11.method_name as method_name,
+    case c.contact_flag when 'Y' then '成功' when 'N' then '失败' end as contact_flag,
+    case e3.exec_code when '01' then '成功' when '02' then '失败' when '03' then '预约' when '04' then '其他' end  as exec_code,
+
+    case c.contact_flag when 'Y' then e3.accept_name when 'N' then d.fail_name end as accept_name,
+    c.service_name,
+    e8.org_name,
+    coalesce(c.note, b.note) as note,
+    e7.exec_name as exec_name,
+   e10.policy_name as policy_name,
+    c.cust_advice,
+    c.succ_experience,
+    b.grid_desc
+
+    from
+    mk_act_info          a, (select taskid,region_code,status_code,execute_flag,act_id from mk_task_info_550 qq  inner join (select task_id as taskid from mk_task_info_550  order by start_date limit 1000000) ex on qq.task_id = ex.taskid  ) as b
+     join
+    mk_taskexec_info_550 c on b.taskid = c.task_id
+    left join mk_contactfail_dict  d on c.fail_reason = d.fail_code
+    left join mk_acceptflag_dict   e3 on c.accept_flag = e3.accept_flag
+        left join t_bp_acl_user        e9  on c.service_no = e9.screen_name
+    left join t_bp_acl_org         e8 on e9.org_id = e8.org_id
+    left join mk_regioncode_dict e1 on b.region_code = e1.region_code
+    left join mk_taskstatus_dict e2 on b.status_code = e2.status_code
+	left join mk_dealmethod_dict e11 on c.deal_type = e11.method_code
+left join mk_executeflag_dict e7 on b.execute_flag = e7.exec_code
+left join mk_dealpolicy_dict e10 on c.succe_policy = e10.policy_code
+left join mk_chntype_dict j on c.chn_type = j.chn_type  where a.act_id = b.act_id) as t

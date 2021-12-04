@@ -13,8 +13,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 @ComponentScan("edu.ahau.aop.transaction")
 public class TransactionApplication {
     public static void main(String[] args) {
-        AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(
-                TransactionApplication.class);
+        AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(TransactionApplication.class);
         FinanceService financeService = ctx.getBean(FinanceService.class);
         financeService.transfer(1L, 2L, 100);
     }
