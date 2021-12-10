@@ -1,1 +1,2 @@
 thinking-in-spring/**/*.class
+**/target/**
