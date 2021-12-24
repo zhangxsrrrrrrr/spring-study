@@ -31,7 +31,6 @@ public class AsyncDemo {
                 e.printStackTrace();
             }
             deferredResult.setResult("hahahah");
-
         }).start();
         System.out.println("xixi");
         return deferredResult;
