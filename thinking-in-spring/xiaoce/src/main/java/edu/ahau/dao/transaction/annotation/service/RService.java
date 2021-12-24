@@ -17,6 +17,7 @@ public class RService {
 
     @Transactional(propagation = Propagation.REQUIRED)
     public void register() {
+//        int i = 1/0;
         System.out.println(TransactionSynchronizationManager.getCurrentTransactionName());
         // 持久化操作 ......
         System.out.println("register 注册用户 ......");

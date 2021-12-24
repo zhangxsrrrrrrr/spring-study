@@ -27,4 +27,9 @@ public class DeclarativeTransactionConfiguration {
         return new DataSourceTransactionManager(dataSource);
     }
 
+
+    public static void main(String[] args) {
+        String name = null;
+        System.out.println("CARD_PIC="+name);
+    }
 }
