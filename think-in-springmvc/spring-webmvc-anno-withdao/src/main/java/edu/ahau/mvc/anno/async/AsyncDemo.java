@@ -42,6 +42,7 @@ public class AsyncDemo {
             this.deferredResult.setResult("AsyncController deferredResult setResult");
             this.deferredResult = null;
         }
+        
     }
 
     @GetMapping("/async1")

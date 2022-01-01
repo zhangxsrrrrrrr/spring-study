@@ -5,10 +5,7 @@ import edu.ahau.mvc.anno.service.UserService;
 import org.springframework.aop.framework.AopContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author zhangxuna
@@ -33,7 +30,9 @@ public class DemoController {
     }
 
     @PostMapping("/save")
+    @ExceptionHandler
     public String save(@RequestBody User user) {
+        int i = 1/0;
         System.out.println(user);
         return "hah";
     }

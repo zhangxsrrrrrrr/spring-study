@@ -11,6 +11,7 @@
     <module>spring-webmvc</module>
     <module>spring-webmvc-xml-withdao</module>
     <module>spring-webmvc-anno-withdao</module>
+    <module>spring-junit-test</module>
   </modules>
   <packaging>pom</packaging>
 

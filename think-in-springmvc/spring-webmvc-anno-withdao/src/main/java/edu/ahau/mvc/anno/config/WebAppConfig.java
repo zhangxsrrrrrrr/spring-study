@@ -1,15 +1,19 @@
 package edu.ahau.mvc.anno.config;
 
+import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import edu.ahau.mvc.anno.interceptor.DemoInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+
+import java.util.List;
 
 /**
  * @author zhangxuna
@@ -36,4 +40,11 @@ public class WebAppConfig extends WebMvcConfigurationSupport {
         super.addInterceptors(registry);
     }
 
+
+    @Override
+    protected void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+        FastJsonHttpMessageConverter jsonHttpMessageConverter = new FastJsonHttpMessageConverter();
+        converters.add(jsonHttpMessageConverter);
+        super.configureMessageConverters(converters);
+    }
 }

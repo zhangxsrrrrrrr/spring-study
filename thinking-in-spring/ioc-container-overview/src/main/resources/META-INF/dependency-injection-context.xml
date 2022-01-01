@@ -10,5 +10,9 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
 
   </bean>
 
-  <bean id="userFactoryBean" class="edu.ahau.thinking.in.spring.ioc.overview.factory.UserFactoryBean" />
+<!--  <bean id="child" class="edu.ahau.thinking.in.spring.ioc.overview.factory.entity.Child" />-->
+<!--  <bean id="userFactoryBean" class="edu.ahau.thinking.in.spring.ioc.overview.factory.UserFactoryBean" />-->
+<!--  <bean id="toyFactoryBean" class="edu.ahau.thinking.in.spring.ioc.overview.factory.ToyFactoryBean">-->
+<!--    <property name="child" ref="child" />-->
+<!--  </bean>-->
 </beans>

@@ -58,6 +58,11 @@
       <version>5.2.8.RELEASE</version>
       <scope>compile</scope>
     </dependency>
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>fastjson</artifactId>
+      <version>1.2.75</version>
+    </dependency>
 
   </dependencies>
 </project>
